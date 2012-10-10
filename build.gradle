@@ -1,0 +1,30 @@
+apply plugin: 'groovy'
+apply plugin: 'idea'
+apply plugin: 'maven'
+
+sourceCompatibility = 1.6
+
+version = '1.0-SNAPSHOT'
+group = 'org.vbossica'
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+
+  def fopDeps = ['org.apache.xmlgraphics:fop:1.0',
+                 'avalon-framework:avalon-framework-api:4.2.0',
+                 'avalon-framework:avalon-framework-impl:4.2.0']
+
+  groovy localGroovy()
+
+  compile gradleApi(),
+          'xerces:xercesImpl:2.10.0',
+          'saxon:saxon:6.5.3',
+          fopDeps,
+          'net.sf.xslthl:xslthl:2.0.1'
+}
+
+install.dependsOn ':build'
+
